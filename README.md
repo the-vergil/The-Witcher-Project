@@ -10,13 +10,13 @@ In this project we are going to collect name of different characters from differ
 - Selenium is the most popularly used freeware and open source automation tool. The benefits of Selenium for **Test Automation** are immense.
 - The website from which data is collected: [https://witcher.fandom.com/wiki/Witcher_Wiki](https://witcher.fandom.com/wiki/Witcher_Wiki)
 
-## End result of Step 1
+  ## End result of Step 1
 
-- The end result of this step is a csv file or a pickle file that will store the characters data
-- The data collected is stored in data-frame which have two columns
-- One column will store the name of book and the other column will store the character name
+  - The end result of this step is a csv file or a pickle file that will store the characters data
+  - The data collected is stored in data-frame which have two columns
+  - One column will store the name of book and the other column will store the character name
 
-# Extracting Relationships
+# Step 2 : Extracting Relationships
 - In this step we are to find the relationships between different characters in the book
 - Then we have to find the importance of characters in each book
 - Then we’ll find the communities present in each book
