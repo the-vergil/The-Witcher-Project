@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1500px;
+            height: 750px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "group": 0, "id": "Adda", "label": "Adda", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 0, "id": "Villentretenmerth", "label": "Villentretenmerth", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 0, "id": "Sigismund", "label": "Sigismund", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 0, "id": "Caldemeyn", "label": "Caldemeyn", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 0, "id": "Triss", "label": "Triss", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 3, "id": "Geralt", "label": "Geralt", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 0, "id": "Radcliffe", "label": "Radcliffe", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 0, "id": "Sh\u0027eenaz", "label": "Sh\u0027eenaz", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Yennefer", "label": "Yennefer", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 2, "id": "Agloval", "label": "Agloval", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 2, "id": "Braenn", "label": "Braenn", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 2, "id": "Dandelion", "label": "Dandelion", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 2, "id": "Gardenia", "label": "Gardenia", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 2, "id": "Cirilla", "label": "Cirilla", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 2, "id": "Dainty", "label": "Dainty", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Dorregaray", "label": "Dorregaray", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Nenneke", "label": "Nenneke", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 2, "id": "Dudu", "label": "Dudu", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Freixenet", "label": "Freixenet", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 3, "id": "Chireadan", "label": "Chireadan", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 3, "id": "Eskel", "label": "Eskel", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Ciri", "label": "Ciri", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Galahad", "label": "Galahad", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Kelpie", "label": "Kelpie", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Eurneid", "label": "Eurneid", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Iola", "label": "Iola", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 0, "id": "Yarpen", "label": "Yarpen", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 1, "id": "Jarre", "label": "Jarre", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 3, "id": "Vesemir", "label": "Vesemir", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 0, "id": "Ethain", "label": "Ethain", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "group": 0, "id": "Venzlav", "label": "Venzlav", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "Adda", "label": 1, "to": "Villentretenmerth", "value": 4, "weight": 1}, {"from": "Adda", "label": 1, "to": "Sigismund", "value": 5, "weight": 1}, {"from": "Villentretenmerth", "label": 1, "to": "Caldemeyn", "value": 8, "weight": 1}, {"from": "Villentretenmerth", "label": 1, "to": "Triss", "value": 4, "weight": 1}, {"from": "Villentretenmerth", "label": 1, "to": "Geralt", "value": 4, "weight": 1}, {"from": "Villentretenmerth", "label": 1, "to": "Radcliffe", "value": 4, "weight": 1}, {"from": "Villentretenmerth", "label": 1, "to": "Sh\u0027eenaz", "value": 5, "weight": 1}, {"from": "Villentretenmerth", "label": 1, "to": "Yennefer", "value": 4, "weight": 1}, {"from": "Agloval", "label": 1, "to": "Braenn", "value": 4, "weight": 1}, {"from": "Agloval", "label": 1, "to": "Dandelion", "value": 3, "weight": 1}, {"from": "Agloval", "label": 1, "to": "Gardenia", "value": 1, "weight": 1}, {"from": "Braenn", "label": 1, "to": "Cirilla", "value": 1, "weight": 1}, {"from": "Braenn", "label": 1, "to": "Dainty", "value": 4, "weight": 1}, {"from": "Braenn", "label": 1, "to": "Dandelion", "value": 3, "weight": 1}, {"from": "Braenn", "label": 1, "to": "Dorregaray", "value": 3, "weight": 1}, {"from": "Braenn", "label": 1, "to": "Nenneke", "value": 3, "weight": 1}, {"from": "Braenn", "label": 1, "to": "Dudu", "value": 4, "weight": 1}, {"from": "Braenn", "label": 1, "to": "Freixenet", "value": 8, "weight": 1}, {"from": "Braenn", "label": 1, "to": "Geralt", "value": 3, "weight": 1}, {"from": "Braenn", "label": 1, "to": "Triss", "value": 2, "weight": 1}, {"from": "Cirilla", "label": 1, "to": "Dainty", "value": 4, "weight": 1}, {"from": "Cirilla", "label": 1, "to": "Dandelion", "value": 6, "weight": 1}, {"from": "Cirilla", "label": 1, "to": "Freixenet", "value": 1, "weight": 1}, {"from": "Cirilla", "label": 1, "to": "Geralt", "value": 2, "weight": 1}, {"from": "Dainty", "label": 1, "to": "Chireadan", "value": 1, "weight": 1}, {"from": "Dainty", "label": 1, "to": "Caldemeyn", "value": 4, "weight": 1}, {"from": "Dainty", "label": 1, "to": "Dandelion", "value": 3, "weight": 1}, {"from": "Dainty", "label": 1, "to": "Gardenia", "value": 5, "weight": 1}, {"from": "Dainty", "label": 1, "to": "Triss", "value": 1, "weight": 1}, {"from": "Dainty", "label": 1, "to": "Yennefer", "value": 2, "weight": 1}, {"from": "Dainty", "label": 1, "to": "Eskel", "value": 4, "weight": 1}, {"from": "Dainty", "label": 1, "to": "Geralt", "value": 4, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Ciri", "value": 6, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Caldemeyn", "value": 7, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Freixenet", "value": 3, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Galahad", "value": 2, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Geralt", "value": 19, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Kelpie", "value": 4, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Nenneke", "value": 5, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Sh\u0027eenaz", "value": 3, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Yennefer", "value": 8, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Gardenia", "value": 2, "weight": 1}, {"from": "Dandelion", "label": 1, "to": "Triss", "value": 4, "weight": 1}, {"from": "Dorregaray", "label": 1, "to": "Ciri", "value": 3, "weight": 1}, {"from": "Dorregaray", "label": 1, "to": "Freixenet", "value": 5, "weight": 1}, {"from": "Dorregaray", "label": 1, "to": "Radcliffe", "value": 5, "weight": 1}, {"from": "Dorregaray", "label": 1, "to": "Triss", "value": 5, "weight": 1}, {"from": "Dorregaray", "label": 1, "to": "Yennefer", "value": 3, "weight": 1}, {"from": "Dorregaray", "label": 1, "to": "Geralt", "value": 2, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Ciri", "value": 12, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Freixenet", "value": 8, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Geralt", "value": 8, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Caldemeyn", "value": 1, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Eskel", "value": 5, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Eurneid", "value": 4, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Gardenia", "value": 5, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Iola", "value": 9, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Triss", "value": 5, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Yennefer", "value": 16, "weight": 1}, {"from": "Nenneke", "label": 1, "to": "Sh\u0027eenaz", "value": 4, "weight": 1}, {"from": "Caldemeyn", "label": 1, "to": "Ciri", "value": 4, "weight": 1}, {"from": "Caldemeyn", "label": 1, "to": "Radcliffe", "value": 4, "weight": 1}, {"from": "Caldemeyn", "label": 1, "to": "Triss", "value": 4, "weight": 1}, {"from": "Caldemeyn", "label": 1, "to": "Yarpen", "value": 4, "weight": 1}, {"from": "Caldemeyn", "label": 1, "to": "Eskel", "value": 4, "weight": 1}, {"from": "Caldemeyn", "label": 1, "to": "Freixenet", "value": 2, "weight": 1}, {"from": "Caldemeyn", "label": 1, "to": "Geralt", "value": 4, "weight": 1}, {"from": "Caldemeyn", "label": 1, "to": "Yennefer", "value": 3, "weight": 1}, {"from": "Ciri", "label": 1, "to": "Freixenet", "value": 2, "weight": 1}, {"from": "Ciri", "label": 1, "to": "Galahad", "value": 2, "weight": 1}, {"from": "Ciri", "label": 1, "to": "Geralt", "value": 12, "weight": 1}, {"from": "Ciri", "label": 1, "to": "Jarre", "value": 2, "weight": 1}, {"from": "Ciri", "label": 1, "to": "Kelpie", "value": 6, "weight": 1}, {"from": "Ciri", "label": 1, "to": "Yennefer", "value": 15, "weight": 1}, {"from": "Ciri", "label": 1, "to": "Eskel", "value": 1, "weight": 1}, {"from": "Ciri", "label": 1, "to": "Iola", "value": 4, "weight": 1}, {"from": "Ciri", "label": 1, "to": "Radcliffe", "value": 6, "weight": 1}, {"from": "Radcliffe", "label": 1, "to": "Geralt", "value": 1, "weight": 1}, {"from": "Radcliffe", "label": 1, "to": "Triss", "value": 3, "weight": 1}, {"from": "Radcliffe", "label": 1, "to": "Yarpen", "value": 4, "weight": 1}, {"from": "Radcliffe", "label": 1, "to": "Yennefer", "value": 4, "weight": 1}, {"from": "Triss", "label": 1, "to": "Eskel", "value": 5, "weight": 1}, {"from": "Triss", "label": 1, "to": "Geralt", "value": 2, "weight": 1}, {"from": "Triss", "label": 1, "to": "Yennefer", "value": 5, "weight": 1}, {"from": "Yarpen", "label": 1, "to": "Freixenet", "value": 5, "weight": 1}, {"from": "Yarpen", "label": 1, "to": "Sh\u0027eenaz", "value": 4, "weight": 1}, {"from": "Yarpen", "label": 1, "to": "Chireadan", "value": 9, "weight": 1}, {"from": "Chireadan", "label": 1, "to": "Eskel", "value": 4, "weight": 1}, {"from": "Chireadan", "label": 1, "to": "Gardenia", "value": 4, "weight": 1}, {"from": "Chireadan", "label": 1, "to": "Geralt", "value": 3, "weight": 1}, {"from": "Chireadan", "label": 1, "to": "Jarre", "value": 4, "weight": 1}, {"from": "Eskel", "label": 1, "to": "Freixenet", "value": 2, "weight": 1}, {"from": "Eskel", "label": 1, "to": "Geralt", "value": 1, "weight": 1}, {"from": "Eskel", "label": 1, "to": "Vesemir", "value": 4, "weight": 1}, {"from": "Gardenia", "label": 1, "to": "Dudu", "value": 4, "weight": 1}, {"from": "Gardenia", "label": 1, "to": "Geralt", "value": 4, "weight": 1}, {"from": "Geralt", "label": 1, "to": "Eurneid", "value": 5, "weight": 1}, {"from": "Geralt", "label": 1, "to": "Galahad", "value": 5, "weight": 1}, {"from": "Geralt", "label": 1, "to": "Jarre", "value": 1, "weight": 1}, {"from": "Geralt", "label": 1, "to": "Kelpie", "value": 2, "weight": 1}, {"from": "Geralt", "label": 1, "to": "Sh\u0027eenaz", "value": 4, "weight": 1}, {"from": "Geralt", "label": 1, "to": "Yennefer", "value": 31, "weight": 1}, {"from": "Geralt", "label": 1, "to": "Vesemir", "value": 1, "weight": 1}, {"from": "Freixenet", "label": 1, "to": "Sh\u0027eenaz", "value": 4, "weight": 1}, {"from": "Freixenet", "label": 1, "to": "Galahad", "value": 3, "weight": 1}, {"from": "Galahad", "label": 1, "to": "Jarre", "value": 2, "weight": 1}, {"from": "Galahad", "label": 1, "to": "Yennefer", "value": 5, "weight": 1}, {"from": "Jarre", "label": 1, "to": "Yennefer", "value": 4, "weight": 1}, {"from": "Kelpie", "label": 1, "to": "Iola", "value": 4, "weight": 1}, {"from": "Kelpie", "label": 1, "to": "Yennefer", "value": 2, "weight": 1}, {"from": "Yennefer", "label": 1, "to": "Eurneid", "value": 2, "weight": 1}, {"from": "Yennefer", "label": 1, "to": "Iola", "value": 5, "weight": 1}, {"from": "Yennefer", "label": 1, "to": "Sh\u0027eenaz", "value": 1, "weight": 1}, {"from": "Yennefer", "label": 1, "to": "Vesemir", "value": 4, "weight": 1}, {"from": "Sh\u0027eenaz", "label": 1, "to": "Ethain", "value": 4, "weight": 1}, {"from": "Ethain", "label": 1, "to": "Venzlav", "value": 5, "weight": 1}, {"from": "Venzlav", "label": 1, "to": "Sigismund", "value": 5, "weight": 1}, {"from": "Eurneid", "label": 1, "to": "Iola", "value": 10, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
